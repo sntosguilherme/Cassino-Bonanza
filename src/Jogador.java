@@ -7,22 +7,17 @@ import java.util.List;
 public class Jogador {
     private String nome;
     protected double saldo;
-    private int quantPartidas;
     private List<ResultadoJogo> historico;
 
     //Construtores
     public Jogador() {
         this.nome = null;
         this.saldo = 1000;
-        this.quantPartidas = 0;
-        this.historico = new ArrayList<>();
     }
 
-    public Jogador(String nome, double saldo, int quantPartidas, List<ResultadoJogo> historico) {
+    public Jogador(String nome, double saldo) {
         this.nome = nome;
         this.saldo = saldo;
-        this.quantPartidas = quantPartidas;
-        this.historico = historico;
     }
 
     //Getters e setters
@@ -40,14 +35,6 @@ public class Jogador {
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
-    }
-
-    public int getQuantPartidas() {
-        return this.quantPartidas;
-    }
-
-    public void setQuantPartidas(int quantPartidas) {
-        this.quantPartidas = quantPartidas;
     }
 
     public List<ResultadoJogo> getHistorico() {
