@@ -17,7 +17,7 @@ public class Jogador {
 
     public Jogador(String nome, double saldo) {
         this.nome = nome;
-        this.saldo = saldo;
+        this.saldo = saldo ;
     }
 
     //Getters e setters
