@@ -7,28 +7,28 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Roleta extends JPanel {
-    private JLabel resultado; // Mídia que pode ser inserida depois (texto, imagem) do swing
-    private JButton girar;
+    private final JLabel resultado; // Mídia que pode ser inserida depois (texto, imagem) do swing
+    private final JButton girar;
 
-    private static int[] numeros = {
+    private static final int[] numeros = {
             0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24,
             16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
     };
 
-    private static Set<Integer> vermelhos = new HashSet<>(Arrays.asList(
+    private static final Set<Integer> vermelhos = new HashSet<>(Arrays.asList(
         32, 19, 21, 25, 34, 27, 36, 30, 23, 5, 16, 1, 14, 9, 18, 7, 12, 3
         )
     );
 
-    private static double grauSetor =  360.0/numeros.length;
-    private static double grauBase = 90.0;
+    private static final double grauSetor =  360.0/numeros.length;
+    private static final double grauBase = 90.0;
 
-    private SecureRandom rng = new SecureRandom();
+    private final SecureRandom rng = new SecureRandom();    //random number genarator
     private double anguloRoleta = 0;
     private double anguloBola = 0;
     private double velocidadeRoleta = 0;
     private double velocidadeBola = 0;
-    private Timer timer;
+    private final Timer timer;
 
     private void girarRoleta() {
         velocidadeRoleta = 6 + rng.nextDouble()*4;
@@ -52,7 +52,7 @@ public class Roleta extends JPanel {
         return (d<0) ? d + 360.0 : d;
     }
 
-    private static double pocketCenterDeg(int index) {
+    private static double grauSlotCentral(int index) {
         return norm360(grauBase - (index+0.5) * grauSetor);
     }
 
@@ -83,11 +83,11 @@ public class Roleta extends JPanel {
         }
     }
 
-    private int bolsoMaisProximo(double relCWDeg) {
+    private int slotMaisProximo(double relCWDeg) {
         int melhor = 0;
         double melhorDelta = 1e9;
         for (int i = 0; i <numeros.length; i++) {
-            double centro = pocketCenterDeg(i);
+            double centro = grauSlotCentral(i);
             double d = distanciaAngular(relCWDeg, centro);
 
             if(d < melhorDelta) {
@@ -109,11 +109,11 @@ public class Roleta extends JPanel {
             timer.stop();
 
             double rel = norm360(anguloBola - anguloRoleta);
-            int idx = bolsoMaisProximo(rel);
+            int idx = slotMaisProximo(rel);
             int numero = numeros[idx];
             String cor = nomeCor(numero);
 
-            double centro = pocketCenterDeg(idx);
+            double centro = grauSlotCentral(idx);
             anguloBola = norm360(anguloRoleta + centro);
 
             mostrarResultado(numero, cor);
@@ -165,8 +165,9 @@ public class Roleta extends JPanel {
         girar.setContentAreaFilled(false);
         girar.setFocusPainted(false);
         girar.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
-        girar.addActionListener(ae -> girarRoleta());
+        girar.addActionListener(e -> girarRoleta());
 
+        //painel sul
         JPanel south = new JPanel();
         south.setLayout(new BoxLayout(south, BoxLayout.Y_AXIS));
         south.setBackground(new Color(35, 35, 35));
@@ -213,6 +214,7 @@ public class Roleta extends JPanel {
             g2.drawArc(x+1, y+1, rOuter*2 - 2, rOuter*2 -2, start, extent);
         }
 
+        //círculo interno da roleta
         int rInner = (int) (rOuter * 0.82);
         g2.setColor(new Color(35, 35, 35));
         g2.fillOval(cx - rInner, cy - rInner, rInner*2, rInner*2);
