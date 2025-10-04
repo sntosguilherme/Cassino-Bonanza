@@ -1,6 +1,8 @@
 
-import java.util.Set;
-
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -13,8 +15,16 @@ import java.util.Set;
 public class SlotGameGUI extends javax.swing.JFrame {
     private Jogador j;
     private double apostaMontante;
-    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SlotGameGUI.class.getName());
+    private Timer slotTimer;
+    private int contaCiclo = 0;
+    private final int maxCiclo = 30;
+    private final String[] RECURSOS = {
+            "/recursos/barra.jpg",
+            "/recursos/cereja.jpg",
+            "/recursos/moeda.jpg",
+            "/recursos/sete.jpg"
+    };
 
     /**
      * Creates new form SlotGameGUI
@@ -43,7 +53,7 @@ public class SlotGameGUI extends javax.swing.JFrame {
         slot1 = new javax.swing.JLabel();
         slot2 = new javax.swing.JLabel();
         slot3 = new javax.swing.JLabel();
-        girar = new javax.swing.JButton();
+        botaoGirar = new javax.swing.JButton();
         aposta = new javax.swing.JLabel();
         saldo = new javax.swing.JLabel();
         iconBonanza = new javax.swing.JLabel();
@@ -52,6 +62,7 @@ public class SlotGameGUI extends javax.swing.JFrame {
         aposta50 = new javax.swing.JButton();
         zeraAposta = new javax.swing.JButton();
         allin = new javax.swing.JButton();
+        resultado = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -64,7 +75,8 @@ public class SlotGameGUI extends javax.swing.JFrame {
         jButton4.setText("jButton4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(660, 800));
+        setBackground(new java.awt.Color(153, 0, 0));
+        setPreferredSize(new java.awt.Dimension(660, 700));
         setResizable(false);
 
         slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/barra.jpg"))); // NOI18N
@@ -79,93 +91,117 @@ public class SlotGameGUI extends javax.swing.JFrame {
         slot3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 0), 3));
         slot3.setPreferredSize(new java.awt.Dimension(150, 150));
 
-        girar.setBackground(new java.awt.Color(255, 204, 51));
-        girar.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        girar.setText("GIRAR");
-        girar.setPreferredSize(new java.awt.Dimension(70, 70));
-        girar.addActionListener(new java.awt.event.ActionListener() {
+        botaoGirar.setBackground(new java.awt.Color(255, 204, 51));
+        botaoGirar.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        botaoGirar.setText("GIRAR");
+        botaoGirar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botaoGirar.setPreferredSize(new java.awt.Dimension(70, 70));
+        botaoGirar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                girarActionPerformed(evt);
+                botaoGirarActionPerformed(evt);
             }
         });
 
-        aposta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        aposta.setForeground(new java.awt.Color(153, 0, 0));
+        aposta.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        aposta.setForeground(new java.awt.Color(204, 0, 0));
         aposta.setText("SUA APOSTA:");
+        aposta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        aposta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        saldo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        saldo.setForeground(new java.awt.Color(102, 204, 0));
+        saldo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        saldo.setForeground(new java.awt.Color(255, 204, 0));
         saldo.setText("SALDO:");
+        saldo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         iconBonanza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bonanza simbolo.png"))); // NOI18N
 
+        aposta5.setBackground(new java.awt.Color(51, 153, 0));
+        aposta5.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         aposta5.setText("5");
+        aposta5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         aposta5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aposta5ActionPerformed(evt);
             }
         });
 
+        aposta10.setBackground(new java.awt.Color(51, 153, 0));
+        aposta10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         aposta10.setText("10");
+        aposta10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         aposta10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aposta10ActionPerformed(evt);
             }
         });
 
+        aposta50.setBackground(new java.awt.Color(51, 153, 0));
+        aposta50.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         aposta50.setText("50");
+        aposta50.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         aposta50.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aposta50ActionPerformed(evt);
             }
         });
 
+        zeraAposta.setBackground(new java.awt.Color(255, 255, 0));
+        zeraAposta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         zeraAposta.setText("ZERAR APOSTA");
+        zeraAposta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        zeraAposta.setPreferredSize(new java.awt.Dimension(88, 47));
         zeraAposta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 zeraApostaActionPerformed(evt);
             }
         });
 
+        allin.setBackground(new java.awt.Color(204, 0, 0));
+        allin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         allin.setText("ALL IN");
+        allin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        allin.setPreferredSize(new java.awt.Dimension(47, 23));
         allin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 allinActionPerformed(evt);
             }
         });
 
+        resultado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        resultado.setText("RESULTADO: -");
+        resultado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(iconBonanza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(iconBonanza, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(resultado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(zeraAposta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(aposta5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(aposta10, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(aposta50, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(allin, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(aposta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saldo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(slot1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(slot2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(slot3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(girar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))
-                    .addComponent(saldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(zeraAposta, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(aposta5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(aposta10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(aposta50)
-                                .addGap(18, 18, 18)
-                                .addComponent(allin))
-                            .addComponent(aposta, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(slot3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoGirar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,46 +215,49 @@ public class SlotGameGUI extends javax.swing.JFrame {
                         .addComponent(slot3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(girar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(77, 77, 77)
+                        .addComponent(botaoGirar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saldo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aposta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(aposta5)
-                    .addComponent(aposta10)
-                    .addComponent(aposta50)
-                    .addComponent(zeraAposta)
-                    .addComponent(allin))
-                .addGap(26, 26, 26)
-                .addComponent(saldo)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(aposta50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(zeraAposta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aposta5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aposta10, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(allin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void girarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_girarActionPerformed
-        this.girar(apostaMontante);
+    private void botaoGirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGirarActionPerformed
+        this.animacaoDeGiro();
         
         this.saldo.setText("SALDO: " + this.j.getSaldo());
-    }//GEN-LAST:event_girarActionPerformed
+    }//GEN-LAST:event_botaoGirarActionPerformed
 
     private void aposta5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aposta5ActionPerformed
        this.apostaMontante += 5;
        this.aposta.setText("APOSTA: " + this.apostaMontante);
-       verificaAposta();
+       verificaApostaMaxima();
     }//GEN-LAST:event_aposta5ActionPerformed
 
     private void aposta10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aposta10ActionPerformed
         this.apostaMontante += 10;
         this.aposta.setText("APOSTA: " + this.apostaMontante);
-        verificaAposta();
+        verificaApostaMaxima();
     }//GEN-LAST:event_aposta10ActionPerformed
 
     private void aposta50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aposta50ActionPerformed
         this.apostaMontante += 50;
         this.aposta.setText("APOSTA: " + this.apostaMontante);
-        verificaAposta();
+        verificaApostaMaxima();
     }//GEN-LAST:event_aposta50ActionPerformed
 
     private void zeraApostaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zeraApostaActionPerformed
@@ -256,86 +295,74 @@ public class SlotGameGUI extends javax.swing.JFrame {
         //java.awt.EventQueue.invokeLater(() -> new SlotGameGUI().setVisible(true));
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton allin;
-    private javax.swing.JLabel aposta;
-    private javax.swing.JButton aposta10;
-    private javax.swing.JButton aposta5;
-    private javax.swing.JButton aposta50;
-    private javax.swing.JButton girar;
-    private javax.swing.JLabel iconBonanza;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel saldo;
-    private javax.swing.JLabel slot1;
-    private javax.swing.JLabel slot2;
-    private javax.swing.JLabel slot3;
-    private javax.swing.JButton zeraAposta;
-    // End of variables declaration//GEN-END:variables
-
     private void girar(double aposta){
-        
-        j.setSaldo(j.getSaldo()-this.apostaMontante);
-        int[] sequencia = SlotGame.calcularSequencia();
-        
-        
-        
-        switch(sequencia[0]){
-            case 1:
-                slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/barra.jpg")));
-                break;
-            case 2:
-                slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cereja.jpg")));
-                break;
-            case 3:
-                slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/moeda.jpg")));
-                break;
-            case 4:
-                slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/sete.jpg")));
-                break;
-            }
-        switch(sequencia[1]){
-            case 1:
-                slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/barra.jpg")));
-                break;
-            case 2:
-                slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cereja.jpg")));
-                break;
-            case 3:
-                slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/moeda.jpg")));
-                break;
-            case 4:
-                slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/sete.jpg")));
-                break;
-            }
-        switch(sequencia[2]){
-            case 1:
-                slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/barra.jpg")));
-                break;
-            case 2:
-                slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cereja.jpg")));
-                break;
-            case 3:
-                slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/moeda.jpg")));
-                break;
-            case 4:
-                slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/sete.jpg")));
-                break;
-            }
+        // sequencia = array com as figuras dos 3 slots
+        int[] sequencia = new int[3];
+
+
+            sequencia = SlotGame.calcularSequencia();
+            //muda os slots para as imagens correspondetes
+            switch(sequencia[0]){
+                case 1:
+                    slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/barra.jpg")));
+                    break;
+                case 2:
+                    slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cereja.jpg")));
+                    break;
+                case 3:
+                    slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/moeda.jpg")));
+                    break;
+                case 4:
+                    slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/sete.jpg")));
+                    break;
+                }
+            switch(sequencia[1]){
+                case 1:
+                    slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/barra.jpg")));
+                    break;
+                case 2:
+                    slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cereja.jpg")));
+                    break;
+                case 3:
+                    slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/moeda.jpg")));
+                    break;
+                case 4:
+                    slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/sete.jpg")));
+                    break;
+                }
+            switch(sequencia[2]){
+                case 1:
+                    slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/barra.jpg")));
+                    break;
+                case 2:
+                    slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cereja.jpg")));
+                    break;
+                case 3:
+                    slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/moeda.jpg")));
+                    break;
+                case 4:
+                    slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/sete.jpg")));
+                    break;
+                }
         
         double ganho = SlotGame.calcularGanho(sequencia);
-        
         this.apostaMontante *= ganho;
+
+        j.setSaldo(j.getSaldo()+apostaMontante);
+        this.saldo.setText("SALDO: " + this.j.getSaldo());
         
-        j.setSaldo(j.getSaldo()+this.apostaMontante);
-        
-        
+        //altera a mensagem no resultado de acordo com o ganho.
+        if(ganho != 0){
+            resultado.setText("RESULTADO: GANHOU!!! " + ganho+"x");
+            resultado.setForeground(new java.awt.Color(0, 255, 0));
+        }else{
+            resultado.setText("RESULTADO: PERDEU... :(");
+            resultado.setForeground(new java.awt.Color(255, 0, 0));
+        }
         this.apostaMontante = 0;
         this.aposta.setText("APOSTA: " + this.apostaMontante);
         
+
     }
     
     
@@ -343,11 +370,81 @@ public class SlotGameGUI extends javax.swing.JFrame {
         this.aposta.setText("APOSTA: " + this.apostaMontante);
         this.saldo.setText("SALDO: " + this.j.getSaldo());
     }
-    private void verificaAposta(){
+    private void verificaApostaMaxima(){
         if(this.apostaMontante > this.j.getSaldo()){
             this.apostaMontante = this.j.getSaldo();
             this.aposta.setText("APOSTA: " + this.apostaMontante);
         }
     }
     
+    private void animacaoDeGiro() {
+        if(apostaMontante != 0){
+            contaCiclo = 0;
+
+            //desliga botoes
+            botaoGirar.setEnabled(false);
+            aposta5.setEnabled(false);
+            aposta10.setEnabled(false);
+            aposta50.setEnabled(false);
+            zeraAposta.setEnabled(false);
+            allin.setEnabled(false);
+
+            //retira o valor apostado do saldo
+            j.setSaldo(j.getSaldo()-this.apostaMontante);
+
+            //gira o slot
+            slotTimer = new javax.swing.Timer(80, new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int rand1 = (int) (Math.random() * 4);
+                    int rand2 = (int) (Math.random() * 4);
+                    int rand3 = (int) (Math.random() * 4);
+
+                    slot1.setIcon(new javax.swing.ImageIcon(getClass().getResource(RECURSOS[rand1])));
+                    slot2.setIcon(new javax.swing.ImageIcon(getClass().getResource(RECURSOS[rand2])));
+                    slot3.setIcon(new javax.swing.ImageIcon(getClass().getResource(RECURSOS[rand3])));
+
+                    contaCiclo++;
+
+                    //se acabaram os ciclos para o timer liga os botoes e faz a funçao de aposta;
+                    if (contaCiclo >= maxCiclo) {
+                        slotTimer.stop(); // Para o Timer
+
+                        // Reabilita os botões
+                        botaoGirar.setEnabled(true);
+                        aposta5.setEnabled(true);
+                        aposta10.setEnabled(true);
+                        aposta50.setEnabled(true);
+                        zeraAposta.setEnabled(true);
+                        allin.setEnabled(true);
+
+                        girar(apostaMontante);
+                    }
+
+                }});
+
+            slotTimer.start();
+        }else JOptionPane.showMessageDialog(null, "APOSTE UM VALOR MAIOR QUE ZERO!");
+
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton allin;
+    private javax.swing.JLabel aposta;
+    private javax.swing.JButton aposta10;
+    private javax.swing.JButton aposta5;
+    private javax.swing.JButton aposta50;
+    private javax.swing.JButton botaoGirar;
+    private javax.swing.JLabel iconBonanza;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel resultado;
+    private javax.swing.JLabel saldo;
+    private javax.swing.JLabel slot1;
+    private javax.swing.JLabel slot2;
+    private javax.swing.JLabel slot3;
+    private javax.swing.JButton zeraAposta;
+    // End of variables declaration//GEN-END:variables
 }

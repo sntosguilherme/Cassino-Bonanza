@@ -46,7 +46,7 @@ public abstract class SlotGame {
         if(sequencia[0] == sequencia[1] && sequencia[1] == sequencia[2]){
             switch (sequencia[0]){
                 case 1:
-                    ganho = 0;
+                    ganho = 1; //nao ganha mas nao perde
                     break;
                 case 2:
                     ganho = 5;
@@ -63,7 +63,6 @@ public abstract class SlotGame {
         else if(sequencia[0] == sequencia[1]){
             switch (sequencia[0]){
                 case 1:
-                    ganho = 1; // nao ganha mas nao perde
                     break;
                 case 2:
                     ganho = 1.5;
@@ -77,9 +76,9 @@ public abstract class SlotGame {
             }
         }
         else if(sequencia[1] == sequencia[2]) {
-            switch (sequencia[0]) {
+            switch (sequencia[1]) {
                 case 1:
-                    ganho = 1; // nao ganha mas nao perde
+                    break;
                 case 2:
                     ganho = 1.5;
                     break;
