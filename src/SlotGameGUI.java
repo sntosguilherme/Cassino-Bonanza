@@ -96,7 +96,7 @@ public class SlotGameGUI extends javax.swing.JFrame {
         slot3.setPreferredSize(new java.awt.Dimension(150, 150));
 
         botaoGirar.setBackground(new java.awt.Color(255, 204, 51));
-        botaoGirar.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        botaoGirar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         botaoGirar.setText("GIRAR");
         botaoGirar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botaoGirar.setPreferredSize(new java.awt.Dimension(70, 70));
@@ -106,7 +106,7 @@ public class SlotGameGUI extends javax.swing.JFrame {
             }
         });
 
-        aposta.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        aposta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         aposta.setForeground(new java.awt.Color(204, 0, 0));
         aposta.setText("SUA APOSTA:");
         aposta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -269,18 +269,19 @@ public class SlotGameGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aposta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(zeraAposta, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(aposta10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(aposta25, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(aposta5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(aposta5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(zeraAposta, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aposta10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aposta25, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aposta250, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aposta100, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aposta50, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(allin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         pack();
@@ -454,6 +455,9 @@ public class SlotGameGUI extends javax.swing.JFrame {
             aposta5.setEnabled(false);
             aposta10.setEnabled(false);
             aposta25.setEnabled(false);
+            aposta50.setEnabled(false);
+            aposta100.setEnabled(false);
+            aposta250.setEnabled(false);
             zeraAposta.setEnabled(false);
             allin.setEnabled(false);
 
@@ -483,6 +487,9 @@ public class SlotGameGUI extends javax.swing.JFrame {
                         aposta5.setEnabled(true);
                         aposta10.setEnabled(true);
                         aposta25.setEnabled(true);
+                        aposta50.setEnabled(true);
+                        aposta100.setEnabled(true);
+                        aposta250.setEnabled(true);
                         zeraAposta.setEnabled(true);
                         allin.setEnabled(true);
 
