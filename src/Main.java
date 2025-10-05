@@ -9,10 +9,16 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        Jogador j = new Jogador();
+        /*Jogador j = new Jogador();
         SlotGameGUI slotGameRUN= new SlotGameGUI(j);
-        slotGameRUN.configurarTexto();
-        java.awt.EventQueue.invokeLater(() -> slotGameRUN.setVisible(true));
+        slotGameRUN.configuracaoInicial();
+        java.awt.EventQueue.invokeLater(() -> slotGameRUN.setVisible(true));*/
+        
+        RankingGUI ranking = new RankingGUI();
+        ranking.configuracaoInicial();
+        java.awt.EventQueue.invokeLater(() -> ranking.setVisible(true));
+        
+       
        
     }
     

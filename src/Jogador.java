@@ -64,7 +64,7 @@ public class Jogador {
 
     @Override   //dando override numa função de objetos
     public String toString() {
-        return this.nome + " (Saldo: " + this.saldo + ")";
+        return this.nome + " ----------------------------------------- " + this.saldo + " PTS";
     }
 
 }

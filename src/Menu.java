@@ -23,10 +23,12 @@ public class Menu extends javax.swing.JFrame {
 
         testeBotao = new javax.swing.JButton();
         primeiraMensagem = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 0, 0));
 
-        testeBotao.setText("Clica Aqui!");
+        testeBotao.setText("JOGAR");
         testeBotao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 testeBotaoActionPerformed(evt);
@@ -37,19 +39,27 @@ public class Menu extends javax.swing.JFrame {
         primeiraMensagem.setText("CASSINO B.O.N.A.N.Z.A");
         primeiraMensagem.setToolTipText("");
 
+        jButton1.setText("RANKING");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(48, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(testeBotao)
-                        .addGap(159, 159, 159))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(primeiraMensagem)
-                        .addGap(40, 40, 40))))
+                .addComponent(primeiraMensagem)
+                .addGap(40, 40, 40))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(testeBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -58,7 +68,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(primeiraMensagem)
                 .addGap(18, 18, 18)
                 .addComponent(testeBotao)
-                .addGap(111, 111, 111))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(82, 82, 82))
         );
 
         pack();
@@ -67,6 +79,10 @@ public class Menu extends javax.swing.JFrame {
     private void testeBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testeBotaoActionPerformed
         primeiraMensagem.setText("Oiii");
     }//GEN-LAST:event_testeBotaoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -94,6 +110,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel primeiraMensagem;
     private javax.swing.JButton testeBotao;
     // End of variables declaration//GEN-END:variables

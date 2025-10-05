@@ -12,18 +12,18 @@ import java.util.List;
 
 public class Ranking {
 
-    static void mostrarTop10(){
+    static String[] mostrarTop10(){
         List<Jogador> leaderboard = new ArrayList<>();
         leaderboard = listarJSON();
-
         List<Jogador> top10 = leaderboard.stream().sorted(Comparator.comparing(Jogador::getSaldo).reversed()).limit(10).toList();
-
-        System.out.println("-------------------------------");
-        System.out.println("TOP 10 PONTUADORES:");
-        for(Jogador jogador : top10){
-            System.out.println(jogador);
+        String[] stringTop10 = new String[10];
+        
+        for (int i = 0; i < stringTop10.length; i++) {
+            stringTop10[i] = top10.get(i).toString();
         }
-        System.out.println("-------------------------------");
+        
+        
+        return stringTop10;
     }
 
 
