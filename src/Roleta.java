@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class Roleta extends JPanel {
     private Jogador j;
@@ -174,21 +173,18 @@ public class Roleta extends JPanel {
         //configuração do combobox
         String[] opcoes = { "Selecione a cor apostada","Vermelho", "Preto", "Verde" };
         escolhaCor = new javax.swing.JComboBox<>(opcoes);
-        escolhaCor.setFont(new Font("Segoe UI Black", 0, 14));
+        escolhaCor.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
         escolhaCor.setBackground(Color.lightGray);
         escolhaCor.setForeground(Color.BLACK);
         escolhaCor.setMaximumSize(new java.awt.Dimension(200,16));
 
-        escolhaCor.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED && !e.getItem().equals("Selecione a cor apostada")) {
-                    System.out.println("Cor selecionada: " + e.getItem());
-                    corEscolhida = e.getItem().toString();
-                }
-                else {
-                    corEscolhida = "0";
-                }
+        escolhaCor.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED && !e.getItem().equals("Selecione a cor apostada")) {
+                System.out.println("Cor selecionada: " + e.getItem());
+                corEscolhida = e.getItem().toString();
+            }
+            else {
+                corEscolhida = "0";
             }
         });
 
@@ -215,44 +211,28 @@ public class Roleta extends JPanel {
         aposta5.setText("5");
         aposta5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         aposta5.setPreferredSize(new java.awt.Dimension(25, 25));
-        aposta5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aposta5ActionPerformed(evt);
-            }
-        });
+        aposta5.addActionListener(this::aposta5ActionPerformed);
 
         aposta10.setBackground(new java.awt.Color(51, 153, 0));
         aposta10.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         aposta10.setText("10");
         aposta10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         aposta10.setPreferredSize(new java.awt.Dimension(25, 25));
-        aposta10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aposta10ActionPerformed(evt);
-            }
-        });
+        aposta10.addActionListener(this::aposta10ActionPerformed);
 
         aposta50.setBackground(new java.awt.Color(51, 153, 0));
         aposta50.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         aposta50.setText("50");
         aposta50.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         aposta50.setPreferredSize(new java.awt.Dimension(25, 25));
-        aposta50.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aposta50ActionPerformed(evt);
-            }
-        });
+        aposta50.addActionListener(this::aposta50ActionPerformed);
 
         zeraAposta.setBackground(new java.awt.Color(255, 255, 0));
         zeraAposta.setFont(new java.awt.Font("Segoe UI Black", Font.PLAIN, 12));
         zeraAposta.setText("ZERAR APOSTA");
         zeraAposta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         zeraAposta.setPreferredSize(new java.awt.Dimension(110, 25));
-        zeraAposta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                zeraApostaActionPerformed(evt);
-            }
-        });
+        zeraAposta.addActionListener(this::zeraApostaActionPerformed);
 
         allIn.setBackground(new java.awt.Color(204, 0, 0));
         allIn.setForeground(new Color(35, 35, 35));
@@ -261,11 +241,7 @@ public class Roleta extends JPanel {
         allIn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         allIn.setPreferredSize(new java.awt.Dimension(50, 25));
         allIn.setPreferredSize(new java.awt.Dimension(47, 23));
-        allIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allinActionPerformed(evt);
-            }
-        });
+        allIn.addActionListener(this::allinActionPerformed);
 
     }
 
@@ -283,10 +259,7 @@ public class Roleta extends JPanel {
     }
 
     private boolean podeApostar() {
-        if(corEscolhida.equals("0")) {
-            return false;
-        }
-        return true;
+        return !corEscolhida.equals("0");
     }
 
     private double calcularGanho(String cor) {
@@ -342,7 +315,7 @@ public class Roleta extends JPanel {
         setPreferredSize(new Dimension(720, 950));
         setBackground(new Color(35,35, 35));
 
-        timer = new Timer(16, e -> tick());
+        timer = new Timer(16, _ -> tick());
 
         //config label
         resultado = new JLabel("Faça sua aposta!", SwingUtilities.LEFT);
@@ -383,7 +356,7 @@ public class Roleta extends JPanel {
         girar.setContentAreaFilled(false);
         girar.setFocusPainted(false);
         girar.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
-        girar.addActionListener(e -> girarRoleta());
+        girar.addActionListener(_ -> girarRoleta());
 
         //Layout
         //painel esquerda
@@ -545,7 +518,6 @@ public class Roleta extends JPanel {
     private javax.swing.JButton aposta50;
     private javax.swing.JButton zeraAposta;
     private javax.swing.JButton allIn;
-    private JLabel selecionar;
     private JLabel aposta;
     private JLabel saldo;
     private javax.swing.JComboBox<String> escolhaCor;
