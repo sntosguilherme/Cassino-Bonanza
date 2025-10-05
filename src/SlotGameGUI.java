@@ -1,6 +1,7 @@
 
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /*
@@ -59,10 +60,13 @@ public class SlotGameGUI extends javax.swing.JFrame {
         iconBonanza = new javax.swing.JLabel();
         aposta5 = new javax.swing.JButton();
         aposta10 = new javax.swing.JButton();
-        aposta50 = new javax.swing.JButton();
+        aposta25 = new javax.swing.JButton();
         zeraAposta = new javax.swing.JButton();
         allin = new javax.swing.JButton();
         resultado = new javax.swing.JLabel();
+        aposta50 = new javax.swing.JButton();
+        aposta100 = new javax.swing.JButton();
+        aposta250 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -109,14 +113,14 @@ public class SlotGameGUI extends javax.swing.JFrame {
         aposta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         saldo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        saldo.setForeground(new java.awt.Color(255, 204, 0));
+        saldo.setForeground(new java.awt.Color(51, 153, 0));
         saldo.setText("SALDO:");
         saldo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         iconBonanza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bonanza simbolo.png"))); // NOI18N
 
         aposta5.setBackground(new java.awt.Color(51, 153, 0));
-        aposta5.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        aposta5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         aposta5.setText("5");
         aposta5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         aposta5.addActionListener(new java.awt.event.ActionListener() {
@@ -135,13 +139,13 @@ public class SlotGameGUI extends javax.swing.JFrame {
             }
         });
 
-        aposta50.setBackground(new java.awt.Color(51, 153, 0));
-        aposta50.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        aposta50.setText("50");
-        aposta50.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        aposta50.addActionListener(new java.awt.event.ActionListener() {
+        aposta25.setBackground(new java.awt.Color(51, 153, 0));
+        aposta25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        aposta25.setText("25");
+        aposta25.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        aposta25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aposta50ActionPerformed(evt);
+                aposta25ActionPerformed(evt);
             }
         });
 
@@ -171,28 +175,48 @@ public class SlotGameGUI extends javax.swing.JFrame {
         resultado.setText("RESULTADO: -");
         resultado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        aposta50.setBackground(new java.awt.Color(51, 153, 0));
+        aposta50.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        aposta50.setText("50");
+        aposta50.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        aposta50.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aposta50ActionPerformed(evt);
+            }
+        });
+
+        aposta100.setBackground(new java.awt.Color(51, 153, 0));
+        aposta100.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        aposta100.setText("100");
+        aposta100.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        aposta100.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aposta100ActionPerformed(evt);
+            }
+        });
+
+        aposta250.setBackground(new java.awt.Color(51, 153, 0));
+        aposta250.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        aposta250.setText("250");
+        aposta250.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        aposta250.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aposta250ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(iconBonanza, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+            .addComponent(iconBonanza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(resultado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(zeraAposta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(aposta5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(aposta10, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(aposta50, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(allin, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(aposta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(saldo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(aposta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                        .addComponent(saldo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(slot1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
@@ -202,6 +226,28 @@ public class SlotGameGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoGirar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(189, 189, 189)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(zeraAposta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(aposta5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(allin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(aposta50, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(aposta100, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(aposta250, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(aposta10, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(aposta25, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,14 +269,18 @@ public class SlotGameGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aposta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(aposta50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(zeraAposta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(aposta5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(aposta10, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(allin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(zeraAposta, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aposta10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aposta25, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aposta5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aposta250, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aposta100, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aposta50, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(allin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         pack();
@@ -254,11 +304,11 @@ public class SlotGameGUI extends javax.swing.JFrame {
         verificaApostaMaxima();
     }//GEN-LAST:event_aposta10ActionPerformed
 
-    private void aposta50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aposta50ActionPerformed
-        this.apostaMontante += 50;
+    private void aposta25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aposta25ActionPerformed
+        this.apostaMontante += 25;
         this.aposta.setText("APOSTA: " + this.apostaMontante);
         verificaApostaMaxima();
-    }//GEN-LAST:event_aposta50ActionPerformed
+    }//GEN-LAST:event_aposta25ActionPerformed
 
     private void zeraApostaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zeraApostaActionPerformed
         this.apostaMontante = 0;
@@ -269,6 +319,24 @@ public class SlotGameGUI extends javax.swing.JFrame {
         this.apostaMontante = this.j.getSaldo();
         this.aposta.setText("APOSTA: " + this.apostaMontante);
     }//GEN-LAST:event_allinActionPerformed
+
+    private void aposta50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aposta50ActionPerformed
+        this.apostaMontante += 50;
+        this.aposta.setText("APOSTA: " + this.apostaMontante);
+        verificaApostaMaxima();
+    }//GEN-LAST:event_aposta50ActionPerformed
+
+    private void aposta100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aposta100ActionPerformed
+        this.apostaMontante += 100;
+        this.aposta.setText("APOSTA: " + this.apostaMontante);
+        verificaApostaMaxima();
+    }//GEN-LAST:event_aposta100ActionPerformed
+
+    private void aposta250ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aposta250ActionPerformed
+       this.apostaMontante += 250;
+        this.aposta.setText("APOSTA: " + this.apostaMontante);
+        verificaApostaMaxima();
+    }//GEN-LAST:event_aposta250ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -366,7 +434,7 @@ public class SlotGameGUI extends javax.swing.JFrame {
     }
     
     
-    public void configurarTexto(){
+    public void configuracaoInicial(){
         this.aposta.setText("APOSTA: " + this.apostaMontante);
         this.saldo.setText("SALDO: " + this.j.getSaldo());
     }
@@ -385,7 +453,7 @@ public class SlotGameGUI extends javax.swing.JFrame {
             botaoGirar.setEnabled(false);
             aposta5.setEnabled(false);
             aposta10.setEnabled(false);
-            aposta50.setEnabled(false);
+            aposta25.setEnabled(false);
             zeraAposta.setEnabled(false);
             allin.setEnabled(false);
 
@@ -414,7 +482,7 @@ public class SlotGameGUI extends javax.swing.JFrame {
                         botaoGirar.setEnabled(true);
                         aposta5.setEnabled(true);
                         aposta10.setEnabled(true);
-                        aposta50.setEnabled(true);
+                        aposta25.setEnabled(true);
                         zeraAposta.setEnabled(true);
                         allin.setEnabled(true);
 
@@ -431,6 +499,9 @@ public class SlotGameGUI extends javax.swing.JFrame {
     private javax.swing.JButton allin;
     private javax.swing.JLabel aposta;
     private javax.swing.JButton aposta10;
+    private javax.swing.JButton aposta100;
+    private javax.swing.JButton aposta25;
+    private javax.swing.JButton aposta250;
     private javax.swing.JButton aposta5;
     private javax.swing.JButton aposta50;
     private javax.swing.JButton botaoGirar;
