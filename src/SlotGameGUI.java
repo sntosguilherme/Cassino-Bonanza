@@ -1,5 +1,6 @@
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -88,7 +89,7 @@ public class SlotGameGUI extends javax.swing.JFrame implements Jogos {
         jButton4.setText("jButton4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(153, 0, 0));
+        getContentPane().setBackground(new Color(35,35,35));
         setPreferredSize(new java.awt.Dimension(660, 700));
         setResizable(false);
 
@@ -182,6 +183,7 @@ public class SlotGameGUI extends javax.swing.JFrame implements Jogos {
 
         resultado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         resultado.setText("RESULTADO: -");
+        resultado.setForeground(Color.WHITE);
         resultado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         aposta50.setBackground(new java.awt.Color(51, 153, 0));

@@ -224,6 +224,7 @@ public class HubUI extends javax.swing.JFrame {
         SlotGameGUI slotGameRUN= new SlotGameGUI(j, this);
         slotGameRUN.configuracaoInicial();
         java.awt.EventQueue.invokeLater(() -> slotGameRUN.setVisible(true));
+        slotGameRUN.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 

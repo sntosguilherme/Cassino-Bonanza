@@ -14,5 +14,9 @@
   {
     "nome": "BON",
     "saldo": 1200.0
+  },
+  {
+    "nome": "LGO",
+    "saldo": 9680.0
   }
 ]

@@ -80,6 +80,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void testeBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testeBotaoActionPerformed
         HubUI hub = new HubUI(new Jogador(), this);
+        hub.setLocationRelativeTo(null);
         java.awt.EventQueue.invokeLater(() -> hub.setVisible(true));
         this.setVisible(false);
     }//GEN-LAST:event_testeBotaoActionPerformed
