@@ -1,5 +1,7 @@
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -110,7 +112,7 @@ public class HubUI extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel1.setText("JOGOS");
@@ -195,14 +197,22 @@ public class HubUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         SwingUtilities.invokeLater(() ->{
-            JFrame f = new JFrame("Roleta Bonanza");
-            f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            f.setContentPane(new Roleta(j));
-            f.pack();
-            f.setLocationRelativeTo(null);
-            f.setVisible(true);
+            JFrame roletaRun = new JFrame("Roleta Bonanza");
+            roletaRun.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            roletaRun.setContentPane(new Roleta(j));
+            roletaRun.pack();
+            roletaRun.setLocationRelativeTo(null);
+            roletaRun.setVisible(true);
+            roletaRun.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    HubUI hub = new HubUI(j);
+                    hub.setVisible(true);
+                }
+            });
             }
         );
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -210,6 +220,7 @@ public class HubUI extends javax.swing.JFrame {
         SlotGameGUI slotGameRUN= new SlotGameGUI(j);
         slotGameRUN.configuracaoInicial();
         java.awt.EventQueue.invokeLater(() -> slotGameRUN.setVisible(true));
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

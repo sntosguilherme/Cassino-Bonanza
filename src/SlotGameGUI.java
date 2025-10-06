@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -34,6 +36,14 @@ public class SlotGameGUI extends javax.swing.JFrame {
         initComponents();
         this.j = j;
         this.apostaMontante = 0;
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                HubUI hub = new HubUI(j);
+                hub.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -77,7 +87,7 @@ public class SlotGameGUI extends javax.swing.JFrame {
 
         jButton4.setText("jButton4");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(153, 0, 0));
         setPreferredSize(new java.awt.Dimension(660, 700));
         setResizable(false);
