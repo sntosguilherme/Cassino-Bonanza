@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 /**
  *  User interface em JFrame
  */
@@ -25,7 +27,7 @@ public class Menu extends javax.swing.JFrame {
         primeiraMensagem = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(153, 0, 0));
 
         testeBotao.setText("JOGAR");
@@ -35,7 +37,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        primeiraMensagem.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        primeiraMensagem.setFont(new java.awt.Font("Segoe UI Black", 0, 26)); // NOI18N
         primeiraMensagem.setText("CASSINO B.O.N.A.N.Z.A");
         primeiraMensagem.setToolTipText("");
 
@@ -77,11 +79,15 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void testeBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testeBotaoActionPerformed
-        primeiraMensagem.setText("Oiii");
+        HubUI hub = new HubUI();
+        java.awt.EventQueue.invokeLater(() -> hub.setVisible(true));
     }//GEN-LAST:event_testeBotaoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        RankingGUI ranking = new RankingGUI();
+        ranking.configuracaoInicial();
+        java.awt.EventQueue.invokeLater(() -> ranking.setVisible(true));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
