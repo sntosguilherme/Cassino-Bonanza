@@ -1,6 +1,5 @@
 
-import javax.swing.JOptionPane;
-import javax.swing.Timer;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,7 +77,7 @@ public class SlotGameGUI extends javax.swing.JFrame {
 
         jButton4.setText("jButton4");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(153, 0, 0));
         setPreferredSize(new java.awt.Dimension(660, 700));
         setResizable(false);
