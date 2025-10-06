@@ -11,14 +11,15 @@ import javax.swing.*;
  * @author larag
  */
 public class HubUI extends javax.swing.JFrame {
-
+    private Jogador j; 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(HubUI.class.getName());
 
     /**
      * Creates new form HubUI
      */
-    public HubUI() {
+    public HubUI(Jogador j) {
         initComponents();
+        this.j = j;
     }
 
     /**
@@ -88,7 +89,6 @@ public class HubUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         SwingUtilities.invokeLater(() ->{
-                    Jogador j = new Jogador();
                     JFrame f = new JFrame("Roleta Bonanza");
                     f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     f.setContentPane(new Roleta(j));
@@ -97,11 +97,11 @@ public class HubUI extends javax.swing.JFrame {
                     f.setVisible(true);
                 }
         );
+        
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        Jogador j = new Jogador();
         SlotGameGUI slotGameRUN= new SlotGameGUI(j);
         slotGameRUN.configuracaoInicial();
         java.awt.EventQueue.invokeLater(() -> slotGameRUN.setVisible(true));
@@ -129,7 +129,7 @@ public class HubUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new HubUI().setVisible(true));
+        //java.awt.EventQueue.invokeLater(() -> new HubUI(this).setVisible(true));
     }
 
     // Variables declaration - do not modify
