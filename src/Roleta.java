@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.awt.event.ItemEvent;
 
-public class Roleta extends JPanel {
+public class Roleta extends JPanel implements Jogos {
     private Jogador j;
     private double apostaMontante;
 
@@ -251,12 +251,13 @@ public class Roleta extends JPanel {
         this.saldo.setText("SALDO: " + this.j.getSaldo());
     }
 
-    private void verificaApostaMaxima(){
-        if(this.apostaMontante > this.j.getSaldo()){
-            this.apostaMontante = this.j.getSaldo();
-            this.aposta.setText("SUA APOSTA: " + this.apostaMontante);
+    @Override
+        public void verificaApostaMaxima(){
+            if(this.apostaMontante > this.j.getSaldo()){
+                this.apostaMontante = this.j.getSaldo();
+                this.aposta.setText("SUA APOSTA: " + this.apostaMontante);
+            }
         }
-    }
 
     private boolean podeApostar() {
         return !corEscolhida.equals("0");
@@ -497,17 +498,6 @@ public class Roleta extends JPanel {
         g2.dispose();
     }
 
-    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() ->{
-//            JFrame f = new JFrame("Roleta Bonanza");
-//            f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//            f.setContentPane(new Roleta(j));
-//            f.pack();
-//            f.setLocationRelativeTo(null);
-//            f.setVisible(true);
-//            }
-//        );
-    }
 
     //declaração de variáveis
     private final JLabel resultado;

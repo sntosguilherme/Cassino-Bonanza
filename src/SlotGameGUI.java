@@ -1,6 +1,5 @@
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -14,8 +13,9 @@ import java.awt.event.WindowEvent;
  *
  * @author Gui
  */
-public class SlotGameGUI extends javax.swing.JFrame {
+public class SlotGameGUI extends javax.swing.JFrame implements Jogos {
     private Jogador j;
+    private HubUI hub;
     private double apostaMontante;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SlotGameGUI.class.getName());
     private Timer slotTimer;
@@ -32,16 +32,16 @@ public class SlotGameGUI extends javax.swing.JFrame {
      * Creates new form SlotGameGUI
      * @param j
      */
-    public SlotGameGUI(Jogador j) {
+    public SlotGameGUI(Jogador j, HubUI hub) {
         initComponents();
         this.j = j;
+        this.hub = hub;
         this.apostaMontante = 0;
 
-        addWindowListener(new WindowAdapter() {
+         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                HubUI hub = new HubUI(j);
-                hub.setVisible(true);
+                retornarAoHub();
             }
         });
     }
@@ -87,7 +87,7 @@ public class SlotGameGUI extends javax.swing.JFrame {
 
         jButton4.setText("jButton4");
 
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(153, 0, 0));
         setPreferredSize(new java.awt.Dimension(660, 700));
         setResizable(false);
@@ -348,31 +348,6 @@ public class SlotGameGUI extends javax.swing.JFrame {
         verificaApostaMaxima();
     }//GEN-LAST:event_aposta250ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        //java.awt.EventQueue.invokeLater(() -> new SlotGameGUI().setVisible(true));
-    }
-
     private void girar(double aposta){
         // sequencia = array com as figuras dos 3 slots
         int[] sequencia = new int[3];
@@ -448,12 +423,14 @@ public class SlotGameGUI extends javax.swing.JFrame {
         this.aposta.setText("APOSTA: " + this.apostaMontante);
         this.saldo.setText("SALDO: " + this.j.getSaldo());
     }
-    private void verificaApostaMaxima(){
-        if(this.apostaMontante > this.j.getSaldo()){
-            this.apostaMontante = this.j.getSaldo();
-            this.aposta.setText("APOSTA: " + this.apostaMontante);
+
+    @Override
+        public void verificaApostaMaxima(){
+            if(this.apostaMontante > this.j.getSaldo()){
+                this.apostaMontante = this.j.getSaldo();
+                this.aposta.setText("APOSTA: " + this.apostaMontante);
+            }
         }
-    }
     
     private void animacaoDeGiro() {
         if(apostaMontante != 0){
@@ -511,6 +488,14 @@ public class SlotGameGUI extends javax.swing.JFrame {
         }else JOptionPane.showMessageDialog(null, "APOSTE UM VALOR MAIOR QUE ZERO!");
 
     }
+
+    private void retornarAoHub() {
+        this.hub.jLabel2.setText("Seu saldo: " + this.j.getSaldo());
+        this.hub.setVisible(true);
+        this.dispose();
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton allin;
     private javax.swing.JLabel aposta;

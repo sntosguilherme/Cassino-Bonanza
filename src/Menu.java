@@ -27,7 +27,7 @@ public class Menu extends javax.swing.JFrame {
         primeiraMensagem = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 0, 0));
 
         testeBotao.setText("JOGAR");
@@ -79,9 +79,9 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void testeBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testeBotaoActionPerformed
-        HubUI hub = new HubUI(new Jogador());
+        HubUI hub = new HubUI(new Jogador(), this);
         java.awt.EventQueue.invokeLater(() -> hub.setVisible(true));
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_testeBotaoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

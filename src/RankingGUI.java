@@ -167,6 +167,7 @@ public class RankingGUI extends javax.swing.JFrame {
     }
     public void configuracaoInicial(){
         String[] texto = Ranking.mostrarTop10();
+
         jLabel1.setText(texto[0]);
         jLabel2.setText(texto[1]);
         jLabel3.setText(texto[2]);

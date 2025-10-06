@@ -1,50 +1,18 @@
 [
   {
     "nome": "LAR",
-    "saldo": 1400.0
-  },
-  {
-    "nome": "LAR",
-    "saldo": 1400.0
-  },
-  {
-    "nome": "LAR",
-    "saldo": 1400.0
-  },
-  {
-    "nome": "LAR",
-    "saldo": 1400.0
+    "saldo": 33000.0
   },
   {
     "nome": "GUI",
-    "saldo": 1399.0
+    "saldo": 2700.0
   },
   {
     "nome": "GUI",
-    "saldo": 1399.0
-  },
-  {
-    "nome": "GUI",
-    "saldo": 1399.0
-  },
-  {
-    "nome": "GUI",
-    "saldo": 1399.0
-  },
-  {
-    "nome": "GUI",
-    "saldo": 1399.0
-  },
-  {
-    "nome": "GUI",
-    "saldo": 1399.0
+    "saldo": 10000.0
   },
   {
     "nome": "BON",
-    "saldo": 1500.0
-  },
-  {
-    "nome": "GUI",
-    "saldo": 1399.0
+    "saldo": 1200.0
   }
 ]
