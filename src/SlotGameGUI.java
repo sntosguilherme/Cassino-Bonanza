@@ -77,7 +77,7 @@ public class SlotGameGUI extends javax.swing.JFrame {
 
         jButton4.setText("jButton4");
 
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 0, 0));
         setPreferredSize(new java.awt.Dimension(660, 700));
         setResizable(false);

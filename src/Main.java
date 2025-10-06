@@ -14,11 +14,11 @@ public class Main {
         slotGameRUN.configuracaoInicial();
         java.awt.EventQueue.invokeLater(() -> slotGameRUN.setVisible(true));*/
         
-        RankingGUI ranking = new RankingGUI();
+        /*RankingGUI ranking = new RankingGUI();
         ranking.configuracaoInicial();
-        java.awt.EventQueue.invokeLater(() -> ranking.setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> ranking.setVisible(true));*/
         
-       
+        java.awt.EventQueue.invokeLater(() -> new Menu().setVisible(true));
        
     }
     
