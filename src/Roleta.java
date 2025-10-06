@@ -499,7 +499,6 @@ public class Roleta extends JPanel {
 
     public static void main(String[] args) {
 //        SwingUtilities.invokeLater(() ->{
-//            Jogador j = new Jogador();
 //            JFrame f = new JFrame("Roleta Bonanza");
 //            f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //            f.setContentPane(new Roleta(j));
