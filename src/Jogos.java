@@ -4,4 +4,7 @@
  */
 
 public interface Jogos {
+
+    void verificaApostaMaxima();
+
 }

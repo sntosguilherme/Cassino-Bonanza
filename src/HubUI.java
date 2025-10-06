@@ -14,13 +14,15 @@ import java.awt.event.WindowEvent;
  */
 public class HubUI extends javax.swing.JFrame {
     private Jogador j;
+    private final Menu menu;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(HubUI.class.getName());
 
     /**
      * Creates new form HubUI
      */
-    public HubUI(Jogador j) {
+    public HubUI(Jogador j, Menu menu) {
         this.j = j;
+        this.menu = menu;
         initComponents();
     }
 
@@ -112,7 +114,7 @@ public class HubUI extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel1.setText("JOGOS");
@@ -195,8 +197,9 @@ public class HubUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        //RODA A ROLETA
         SwingUtilities.invokeLater(() ->{
+            final HubUI hub = this;
             JFrame roletaRun = new JFrame("Roleta Bonanza");
             roletaRun.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             roletaRun.setContentPane(new Roleta(j));
@@ -206,28 +209,39 @@ public class HubUI extends javax.swing.JFrame {
             roletaRun.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {
-                    HubUI hub = new HubUI(j);
+                    jLabel2.setText("Seu saldo: " + hub.j.getSaldo());
                     hub.setVisible(true);
                 }
             });
             }
         );
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        SlotGameGUI slotGameRUN= new SlotGameGUI(j);
+        //RODA O SLOTGAME
+        
+        SlotGameGUI slotGameRUN= new SlotGameGUI(j, this);
         slotGameRUN.configuracaoInicial();
         java.awt.EventQueue.invokeLater(() -> slotGameRUN.setVisible(true));
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        String nome = JOptionPane.showInputDialog("Digite o seu nome: ");
-        this.j.setNome(nome);
-        System.out.println(this.j.getNome());
+        //ENCERRA RUN
+        String nome = "";
+        int n = JOptionPane.showConfirmDialog(null, "deseja salvar sua pontuação no ranking?", "", JOptionPane.YES_NO_OPTION);
+        if (n == JOptionPane.YES_OPTION) {
+            nome = JOptionPane.showInputDialog("Digite o seu nome (apenas as 3 primeiras letras serao salvas no ranking): ");
+            this.j.setNome(nome.substring(0, 3).toUpperCase());
+            Ranking.atualizarLeaderBoard(j);
+            menu.setVisible(true);
+            this.dispose();
+        }
+        else if(n == JOptionPane.NO_OPTION){
+            menu.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -266,7 +280,7 @@ public class HubUI extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog5;
     private javax.swing.JDialog jDialog6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    protected javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

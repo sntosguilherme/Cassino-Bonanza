@@ -18,7 +18,7 @@ public class Ranking {
         List<Jogador> top10 = leaderboard.stream().sorted(Comparator.comparing(Jogador::getSaldo).reversed()).limit(10).toList();
         String[] stringTop10 = new String[10];
         
-        for (int i = 0; i < stringTop10.length; i++) {
+        for (int i = 0; i < top10.size(); i++) {
             stringTop10[i] = top10.get(i).toString();
         }
         
@@ -27,7 +27,7 @@ public class Ranking {
     }
 
 
-    private static ArrayList listarJSON(){
+    private static ArrayList<Jogador> listarJSON(){
         List<Jogador> leaderboard = new ArrayList<>();
         Gson gson1 = new Gson();
 
@@ -38,12 +38,20 @@ public class Ranking {
         FileReader reader = null;
         try {
             reader = new FileReader(pontuacoesJson);
-            leaderboard = gson1.fromJson(reader, listType);
+            List<Jogador> tempLeaderboard = gson1.fromJson(reader, listType);
+            if (tempLeaderboard != null) {
+                leaderboard = (ArrayList<Jogador>)tempLeaderboard;
+            }
+
         } catch (FileNotFoundException e) {
+            return (ArrayList<Jogador>) leaderboard;
+
+        } catch (IOException e) {
+            System.err.println("Erro ao ler o arquivo JSON: " + e.getMessage());
             throw new RuntimeException(e);
         }
 
-        return (ArrayList) leaderboard;
+        return (ArrayList<Jogador>) leaderboard;
     }
 
     static void atualizarLeaderBoard(Jogador jogador){
