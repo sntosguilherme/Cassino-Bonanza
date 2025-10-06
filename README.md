@@ -71,7 +71,7 @@ A **Tabela 3** mostra que as chances do jogador receber algum pagamento em ponto
 
 ---
 
-## 3. METODOLOGIA (Desenvolvimento)
+## 3. METODOLOGIA
 
 Para a elaboração do código em Java, foram utilizadas as IDEs **Netbeans** e **Intellij**. Já para organização das ideias e monitoramento do progresso foi utilizado o aplicativo de produtividade **Notion**. O **google planilhas** foi usado na elaboração das tabelas relativas às probabilidades envolvidas no jogo.
 
