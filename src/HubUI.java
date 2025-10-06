@@ -1,7 +1,5 @@
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -13,13 +11,11 @@ import javax.swing.SwingUtilities;
  * @author larag
  */
 public class HubUI extends javax.swing.JFrame {
-    
+    private Jogador j;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(HubUI.class.getName());
-    protected Jogador j;
 
     /**
      * Creates new form HubUI
-     * @param j
      */
     public HubUI(Jogador j) {
         this.j = j;
@@ -230,7 +226,7 @@ public class HubUI extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -243,13 +239,12 @@ public class HubUI extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        Jogador j = new Jogador();
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new HubUI(j).setVisible(true));
+        //java.awt.EventQueue.invokeLater(() -> new HubUI(j).setVisible(true));
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
