@@ -37,7 +37,7 @@ public class Roleta extends JPanel implements Jogos {
                 //interações com jogador
                 this.j.saldo -= this.apostaMontante;
                 this.saldo.setText("SALDO: " + this.j.getSaldo());
-                configurarTexto();
+                configuracaoInicial();
                 this.aposta.setText("SUA APOSTA: 0.0");
 
                 //desativando os botões
@@ -145,7 +145,7 @@ public class Roleta extends JPanel implements Jogos {
             girar.setEnabled(true);
             this.j.saldo += calcularGanho(cor);
             this.apostaMontante = 0.0;
-            configurarTexto();
+            configuracaoInicial();
 
             //reiniciando a escolha de cor
             corEscolhida = "0";
@@ -246,7 +246,8 @@ public class Roleta extends JPanel implements Jogos {
     }
 
     //aposta
-    public void configurarTexto(){
+    @Override
+    public void configuracaoInicial(){
         this.aposta.setText("SUA APOSTA: " + this.apostaMontante);
         this.saldo.setText("SALDO: " + this.j.getSaldo());
     }
@@ -312,7 +313,7 @@ public class Roleta extends JPanel implements Jogos {
         this.apostaMontante = 0;
 
         iniciarComponentes();
-        configurarTexto();
+        configuracaoInicial();
         setPreferredSize(new Dimension(720, 950));
         setBackground(new Color(35,35, 35));
 

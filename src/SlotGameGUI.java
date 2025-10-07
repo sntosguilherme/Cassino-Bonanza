@@ -420,7 +420,7 @@ public class SlotGameGUI extends javax.swing.JFrame implements Jogos {
 
     }
     
-    
+    @Override
     public void configuracaoInicial(){
         this.aposta.setText("APOSTA: " + this.apostaMontante);
         this.saldo.setText("SALDO: " + this.j.getSaldo());
